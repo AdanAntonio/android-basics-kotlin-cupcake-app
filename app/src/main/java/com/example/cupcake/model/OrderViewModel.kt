@@ -21,8 +21,8 @@ class OrderViewModel : ViewModel() {
     private val _date = MutableLiveData<String>()
     val date: LiveData<String> = _date
 
-    //private val _price = MutableLiveData<Double>()
-    //val price: LiveData<Double> = _price
+    // private val _price = MutableLiveData<Double>()
+    // val price: LiveData<Double> = _price
     private val _price = MutableLiveData<Double>()
     val price: LiveData<String> = Transformations.map(_price) {
         NumberFormat.getCurrencyInstance().format(it)
@@ -65,14 +65,14 @@ class OrderViewModel : ViewModel() {
 
     private fun updatePrice() {
         var calculatedPrice = (quantity.value ?: 0) * PRICE_PER_CUPCAKE
-        //_price.value = (quantity.value ?: 0) * PRICE_PER_CUPCAKE
+        // _price.value = (quantity.value ?: 0) * PRICE_PER_CUPCAKE
         if (dateOptions[0] == _date.value) {
             calculatedPrice += PRICE_FOR_SAME_DAY_PICKUP
         }
         _price.value = calculatedPrice
     }
 
-    private fun resetOrder() {
+    fun resetOrder() {
         _quantity.value = 0
         _flavor.value = ""
         _date.value = dateOptions[0]
